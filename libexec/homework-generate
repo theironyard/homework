@@ -37,7 +37,7 @@ inquirer.prompt( questions, function( answers ) {
   var course = courses[answers.course];
   assert(course, "course is required");
 
-  var assignmentPath = path.join(assignmentsRoot, course, answers.name);
+  var assignmentPath = path.join(assignmentsRoot, course, answers.name.replace(/ /g, '-').toLowerCase());
 
   scaffolt('assignment', answers.name, {
     generatorsPath: process.env._HOMEWORK_ROOT + "/share/homework/generators",

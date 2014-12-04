@@ -5,3 +5,22 @@
 # Help: Fetches the next available assignment
 */
 
+var inquirer = require('inquirer');
+
+var loader = [
+  "/ Fetching",
+  "| Fetching",
+  "\\ Fetching",
+  "- Fetching"
+];
+var i = 4;
+var ui = new inquirer.ui.BottomBar({ bottomBar: loader[i % 4] });
+
+setInterval(function() {
+  ui.updateBottomBar( loader[i++ % 4] );
+}, 300 );
+
+setTimeout(function(){
+  ui.updateBottomBar("");
+  process.exit();
+}, 1200);
