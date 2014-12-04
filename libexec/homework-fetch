@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+/*
+# Usage: homework fetch, f
+# Summary: Fetches the next available assignment
+# Help: Fetches the next available assignment
+*/
+

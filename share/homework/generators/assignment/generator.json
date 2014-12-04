@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "from": "homework.json.hbs",
+      "to": ".homework.json"
+    },
+    {
+      "from": "README.md.hbs",
+      "to": "README.md"
+    }
+  ]
+}

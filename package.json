@@ -17,6 +17,10 @@
   "homepage": "https://github.com/jacobthemyth/homework",
   "dependencies": {
     "colors": "^1.0.3",
+    "commander": "^2.5.0",
+    "inquirer": "^0.8.0",
+    "moment": "^2.8.4",
+    "scaffolt": "^0.5.0",
     "underscore": "^1.7.0"
   }
 }

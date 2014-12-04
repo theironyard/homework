@@ -15,5 +15,3 @@ console.log("API Key: %s", "<not configured>");
 console.log("API URL: %s", "<not configured>");
 console.log("Homework Directory: %s", "<not configured>");
 console.log("If you are having trouble and need to file an issue (%s) please include this information (except your API key. Keep that private).", config.bugs.url);
-
-// vim: set syntax=javascript

@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+/*
+# Usage: homework status
+# Summary: Show the current assignment status
+# Help: Show the current assignment status
+*/
+
+var colors = require('colors');
+var moment = require('moment');
+
+console.log('Current Assignment: '.bold + 'Surf And Paddle');
+console.log('You have the latest version.\n');
+var due = new Date();
+var dueString = moment(due).format('ddd MMM Do h:mma');
+
+if(new Date() >= due) {
+  dueString += " (overdue)";
+  dueString = dueString.red;
+}
+
+console.log('Due: '.bold + dueString);
+console.log('Submission Status: '.bold + 'Not yet submitted');
+console.log('You have unsubmitted changes.'.yellow);

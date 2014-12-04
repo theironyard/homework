@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+/*
+# Usage: homework configure --<key> [value]
+# Summary: Writes config values to a JSON file
+# Help: Writes config values to a JSON file
+*/
+
