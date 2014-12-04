@@ -6,6 +6,8 @@
 */
 
 var inquirer = require('inquirer');
+var backend = require(process.env._HOMEWORK_ROOT + '/lib/backend');
+var cdir = require('cdir');
 
 var loader = [
   "/ Fetching",
