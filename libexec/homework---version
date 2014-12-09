@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+/*
+# Summary: Display the version of homework
+#
+# Displays the version number of this rbenv release, including the
+# current revision from git, if available.
+#
+# The format of the git revision is:
+#   <version>-<num_commits>-<git_sha>
+# where `num_commits` is the number of commits since `version` was
+# tagged.
+*/
+
+console.log("homework 0.0.1");

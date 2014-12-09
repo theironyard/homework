@@ -1,33 +1,7 @@
-# Status
-```
-On branch master
-Your branch is up-to-date with 'origin/master'.
+# homework (WIP)
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
+This project is using [README Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) to document the requirements of the application. Any section marked (WIP) is unfinished and most likely doesn't work. The entire project is marked (WIP) above to indicate that the README doesn't match the actual functionality. The (WIP) above will be removed when they match, and a 1.0.0 version will be released.
 
-  bin/cog
-
-nothing added to commit but untracked files present (use "git add" to track
-```
-
-# TODO
-- Assignment naming convention and check for clash
-- run npm install after install, if using brew
-- Should generate be hidden?
-- resubmit with version history
-- jump to folder
-- tags / topics
-- Assignments should be CC Non Commercial
-- Check components vs. config (bower, npm)
-- git wrapper with warnings
-- use gist for reading assignment
-- have a Photoshop type
-- versions: git tag, in README, in config, in folder name
-- when I change version, becomes not due, shows in status
-- assignment resources
-- Copy code for line commenting, include link
-- Option to auto create git repo, with paper train that it wasn't created by student
-
-# Demi
-- due date
+# Documentation
+## Files
+- [homework.json](doc/files/homework.json.md)
