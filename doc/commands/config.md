@@ -12,7 +12,7 @@ config -- Manage the homework configuration files
 ## DESCRIPTION
 
 homework gets its config settings from the command line, environment
-variables, `homeworkrc` files, and in some cases, the `homework.json` file.
+variables, `homeworkrc` files, and in some cases, the `.homework.json` file.
 
 See [Files: homeworkrc](../files/homeworkrc.md) for more information about the homeworkrc files.
 

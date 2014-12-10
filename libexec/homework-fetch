@@ -5,6 +5,17 @@
 # Help: Fetches the next available assignment
 */
 
+/*
+$ homework fetch
+  New: 2 assignments
+  Surf and Paddle /Users/jacobsmith/Code/...
+  30 jQuery animations /Users/...
+  unchanged: 4, updated: 0, new: 2
+
+$ homework fetch
+  unchanged: 6, updated: 0, new: 0
+*/
+
 var inquirer = require('inquirer');
 var backend = require(process.env._HOMEWORK_ROOT + '/lib/backend');
 var cdir = require('cdir');

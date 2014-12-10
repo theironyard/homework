@@ -1,10 +1,10 @@
-# homework.json (WIP)
+# .homework.json (WIP)
 ## DESCRIPTION
 This document is all you need to know about what's required in your .homework.json file. It must be actual JSON, not just a JavaScript object literal.
 
 A lot of the behavior described in this document is affected by the config settings described in [Guide: Config](../guides/homework-config.md).
 
-Each homework project must have a file named `homework.json` or `.homework.json` in the root of the project directory. This will generally be automatically generated for you by `homework init`, but you will likely need to the file to add additional functionality to each assignment. The following properties are permitted:
+Each homework project must have a file named `.homework.json` in the root of the project directory. This will generally be automatically generated for you by `homework init`, but you will likely need to the file to add additional functionality to each assignment. The following properties are permitted:
 
 ## name
 
