@@ -3,7 +3,6 @@ Apologies, this probably won’t make any sense to anyone but Jake for right now
 # MVP
 ## Docs
 - keep tarballs in tagged detached commits, deprecation removes tag to clean up space?
-- Anatomy: sha + tarball
 - https://github.com/npm/npm/blob/master/doc/cli/npm-adduser.md
 - https://github.com/npm/npm/blob/master/doc/cli/npm-version.md
 - https://github.com/npm/npm/blob/master/doc/misc/npm-registry.md
@@ -24,6 +23,7 @@ only works on master
 bump version in json
 publish to API, with SHA
 detect difference between published version and the repo
+git-archive
 
 how to deal with “night before” publish without pull request?
 

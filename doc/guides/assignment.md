@@ -1,22 +1,27 @@
 The Anatomy of an Assignment
 ====================================
 
-## What is an assignment
+## The assignment ecosystem consists of the following
 
-An assignment is:
+- a) a `git` repository containing one or more assignments
+- b) a subdirectory of (a) containing resources described by a .homework.json file
+- c) a gzipped tarball containing (b)
+- d) a url that resolves to (c)
+- e) a path, relative to the root of (a), resolving to (b)
+- f) a `git` url that, when cloned and combined with (e), results in (b)
+- g) a `<name>@<version>` that is published on the registry with (d), (e), and (f)
+- h) a `<name>@<tag>` that points to (g)
+- i) a `<name>` that has a "latest" tag satisfying (h)
 
-* a) a folder containing resources described by a .homework.json file
-* b) a gzipped tarball containing (a)
-* c) a url that resolves to (b)
-* d) a `<name>@<version>` that is published on the registry with (c)
-* e) a `<name>@<tag>` that points to (d)
-* f) a `<name>` that has a "latest" tag satisfying (e)
+Git urls can be of the form:
 
-Also, it is likely but not necessary that the following are true:
-* 1) The assignment data for a registry is stored in a single git repository
-* 2) Each assignment is a subdirectory of a (1)
+    git://github.com/user/project.git#commit-hash
+    git+ssh://user@hostname:project.git#commit-hash
+    git+http://user@hostname/project/blah.git#commit-hash
+    git+https://user@hostname/project/blah.git#commit-hash
 
-*TODO*: Where are the tarballs stored?
+The `commit-hash` is the unique sha for a single commit. Tags and branches are
+not permitted.
 
 ## The .homework.json File
 
@@ -31,15 +36,13 @@ more info.
 
 ## Keeping files *out* of your assignment
 
-Use a `.gitignore` file to keep stuff out of your assignment.
-
-By default, the following paths and files are ignored, so there's no
-need to add them to `.gitignore` explicitly:
+It is highly recommended that certain files are ignored from the assignments
+repositories by adding them to `.gitignore`.
 
 * `.*.swp`
 * `._*`
 * `.DS_Store`
-* `.git`
+* `.git` (but not `/.git`, obviously)
 * `.hg`
 * `.lock-wscript`
 * `.svn`
@@ -71,8 +74,3 @@ This part's easy.  In the root of your folder, do this:
     homework publish
 
 You can give publish a path to a folder.
-
-Note that pretty much **everything in that folder will be exposed**
-by default.  So, if you have secret stuff in there, use a
-`.gitignore` file to list out the globs to ignore, or publish
-from a fresh checkout.
