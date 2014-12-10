@@ -1,5 +1,5 @@
-The Anatomy of an Assignment
-====================================
+The Anatomy of Homework
+=======================
 
 ## The assignment ecosystem consists of the following
 
@@ -10,8 +10,6 @@ The Anatomy of an Assignment
 - e) a path, relative to the root of (a), resolving to (b)
 - f) a `git` url that, when cloned and combined with (e), results in (b)
 - g) a `<name>@<version>` that is published on the registry with (d), (e), and (f)
-- h) a `<name>@<tag>` that points to (g)
-- i) a `<name>` that has a "latest" tag satisfying (h)
 
 Git urls can be of the form:
 
@@ -21,7 +19,7 @@ Git urls can be of the form:
     git+https://user@hostname/project/blah.git#commit-hash
 
 The `commit-hash` is the unique sha for a single commit. Tags and branches are
-not permitted.
+not permitted. `homework publish` will fail if the `git` url is invalid.
 
 ## The .homework.json File
 
