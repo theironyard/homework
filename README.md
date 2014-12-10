@@ -1,6 +1,28 @@
 # homework (WIP)
 
-This project is using [README Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) to document the requirements of the application. Any section marked (WIP) is unfinished and most likely doesn't work. The entire project is marked (WIP) above to indicate that the README doesn't match the actual functionality. The (WIP) above will be removed when they match, and a 1.0.0 version will be released.
+This project is using [README Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) to document the requirements of the application. Any section marked (WIP) is unfinished and most likely doesn't work. The entire project is marked (WIP) above to indicate that the documentation doesn't match the actual functionality. The (WIP) above will be removed when they match, and a 1.0.0 version will be released.
+
+# Documentation
+## Commands
+- [config](doc/commands/config.md)
+- [edit](doc/commands/edit.md)
+- [fetch](doc/commands/fetch.md)
+- [init](doc/commands/init.md)
+- [publish](doc/commands/publish.md)
+- [restart](doc/commands/restart.md)
+- [run-script](doc/commands/run-script.md)
+- [start](doc/commands/start.md)
+- [stop](doc/commands/stop.md)
+- [tag](doc/commands/tag.md)
+- [test](doc/commands/test.md)
+- [validate](doc/commands/validate.md)
+
+## Files
+- [homework.json](doc/files/homework.json.md)
+- [.homeworkrc](doc/files/homeworkrc)
+
+## Guides
+- [Config](doc/guides/config.md)
 
 # Installation
 
@@ -59,8 +81,3 @@ $ cd /path/to/homework
 $ git fetch
 $ git checkout v0.3.0
 ~~~
-
-
-# Documentation
-## Files
-- [homework.json](doc/files/homework.json.md)
