@@ -35,3 +35,9 @@ By default npm will publish to the public registry. This can be overridden by
 specifying a different default registry or using a `npm-scope(7)` in the name
 (see `package.json(5)`).
 
+The following paths and files are necessary, so adding them to `.gitignore`
+will prevent you from publishing your assignment.
+
+* `.homework.json`
+* `README.md`
+

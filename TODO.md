@@ -2,16 +2,17 @@ Apologies, this probably won’t make any sense to anyone but Jake for right now
 
 # MVP
 ## Docs
+- keep tarballs in tagged detached commits, deprecation removes tag to clean up space?
+- Anatomy: sha + tarball
+- https://github.com/npm/npm/blob/master/doc/cli/npm-adduser.md
 - https://github.com/npm/npm/blob/master/doc/cli/npm-version.md
 - https://github.com/npm/npm/blob/master/doc/misc/npm-registry.md
-- https://github.com/npm/npm/blob/master/doc/misc/npm-developers.md
 - https://github.com/npm/npm/blob/master/doc/misc/npm-scripts.md
 - existing commands to docs
 - versions: in config, in folder name
 - when I change version, becomes not due, shows in status
 - sync -> publish, sync fetches student work
 - hub for auth flow
-- Anatomy: sha + tarball
 - Explain why a single git repo for registry
 
 ### Overview
@@ -32,7 +33,6 @@ how to deal with “night before” publish without pull request?
 ## TODO
 - hw status show folder, give option to open
 - assignments are resolved top to bottom through the registries
-- keep tarballs in a branch, allow deprecation to clean up space?
 - Allow student to resubmit, but keep version history
 - use gist for reading assignment?
 - have a Photoshop type

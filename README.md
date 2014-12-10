@@ -29,6 +29,7 @@ This project is using [README Driven Development](http://tom.preston-werner.com/
 
 ## Guides
 - [Config](doc/guides/config.md)
+- [The Anatomy of an Assignment](doc/guides/assignment.md)
 
 # Installation
 
