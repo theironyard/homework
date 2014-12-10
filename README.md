@@ -4,18 +4,24 @@ This project is using [README Driven Development](http://tom.preston-werner.com/
 
 # Documentation
 ## Commands
+### General
 - [config](doc/commands/config.md)
-- [edit](doc/commands/edit.md)
+
+### Student
 - [fetch](doc/commands/fetch.md)
+
+### Instructor
+- [edit](doc/commands/edit.md)
 - [init](doc/commands/init.md)
 - [publish](doc/commands/publish.md)
+
+### Internal
 - [restart](doc/commands/restart.md)
 - [run-script](doc/commands/run-script.md)
 - [start](doc/commands/start.md)
 - [stop](doc/commands/stop.md)
 - [tag](doc/commands/tag.md)
 - [test](doc/commands/test.md)
-- [validate](doc/commands/validate.md)
 
 ## Files
 - [homework.json](doc/files/homework.json.md)
