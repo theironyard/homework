@@ -40,7 +40,7 @@ inquirer.prompt( questions, function( answers ) {
   var assignmentPath = path.join(assignmentsRoot, course, answers.name.replace(/ /g, '-').toLowerCase());
 
   scaffolt('assignment', answers.name, {
-    generatorsPath: process.env._HOMEWORK_ROOT + "/share/homework/generators",
+    generatorsPath: process.env._HOMEWORK_ROOT + "/share/generators",
     parentPath: assignmentPath
   }, function(error){
     assert(!error, error);
