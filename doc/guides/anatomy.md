@@ -21,6 +21,9 @@ Git urls can be of the form:
 The `commit-hash` is the unique sha for a single commit. Tags and branches are
 not permitted. `homework publish` will fail if the `git` url is invalid.
 
+In addition, it should be noted that assignments are immutable. Any changes to
+an assignment MUST result in a new version.
+
 ## The .homework.json File
 
 You need to have a `.homework.json` file in the root of your project to do
@@ -48,6 +51,7 @@ repositories by adding them to `.gitignore`.
 * `CVS`
 * `npm-debug.log`
 * `node_modules`
+* `bower_components`
 
 The following paths and files are necessary, so adding them to `.gitignore`
 will prevent you from publishing your assignment.

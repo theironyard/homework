@@ -41,3 +41,12 @@ will prevent you from publishing your assignment.
 * `.homework.json`
 * `README.md`
 
+- https://github.com/npm/node-tar
+
+only works on master
+bump version in json
+publish to API, with SHA
+detect difference between published version and the repo
+git-archive
+
+how to deal with “night before” publish without pull request?

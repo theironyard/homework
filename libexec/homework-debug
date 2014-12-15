@@ -5,6 +5,7 @@
 # Help: Outputs useful debug information.
 */
 
+var inquirer = require('inquirer');
 var config = require(process.env._HOMEWORK_ROOT + "/package.json");
 
 console.log("Homework CLI Version: %s", config.version);
