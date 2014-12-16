@@ -27,10 +27,10 @@ homework is configurable via command line switches, environment variables, user 
 See [homework-config](doc/guides/config.md) for more details.
 
 ## Autocompletion
-Add `homework init` to your shell to enable autocompletion.
+Add `homework setup` to your shell to enable autocompletion.
 
 ```sh
-$ echo 'eval "$(homework init -)"' >> ~/.bash_profile
+$ echo 'eval "$(homework setup -)"' >> ~/.bash_profile
 ```
 
 **Ubuntu Desktop note**: Modify your `~/.bashrc` instead of `~/.bash_profile`.

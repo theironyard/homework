@@ -18,9 +18,16 @@
   "dependencies": {
     "colors": "^1.0.3",
     "commander": "^2.5.0",
+    "gulp": "^3.8.10",
     "inquirer": "^0.8.0",
     "moment": "^2.8.4",
     "rc": "^0.5.4",
     "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "gulp-exec": "^2.1.1",
+    "gulp-load-plugins": "^0.8.0",
+    "mocha": "^2.0.1"
   }
 }
