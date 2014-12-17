@@ -10,12 +10,10 @@ Run `homework help` to get a list of available commands.
 
 ## Installation
 
-The primary way to install `homework` is using the [Homebrew](http://brew.sh/) package manager on Mac OS X:
+The primary way to install `homework` is using npm:
 
 ```sh
-$ brew update
-$ brew tap jacobthemyth/homework
-$ brew install jacobthemyth/homework/homework
+$ npm install -g jacobthemyth/homework
 ```
 
 For alternative installation methods, see [INSTALL.md](INSTALL.md)

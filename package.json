@@ -15,6 +15,10 @@
     "url": "https://github.com/jacobthemyth/homework/issues"
   },
   "homepage": "https://github.com/jacobthemyth/homework",
+  "preferGlobal": "true",
+  "bin": {
+    "homework" : "bin/homework"
+  },
   "dependencies": {
     "colors": "^1.0.3",
     "commander": "^2.5.0",
