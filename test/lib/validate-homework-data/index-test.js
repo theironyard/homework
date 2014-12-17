@@ -11,12 +11,12 @@ describe('validate-homework-data', function(){
   });
 
   describe('.toArray', function(){
-    it('should accept spaces and commas', function(){
-      expect(validate.toArray('one,two, three four')).to.deep.equal([
+    it('should be comma separated', function(){
+      expect(validate.toArray('one,two, three, forty two')).to.deep.equal([
         'one',
         'two',
         'three',
-        'four'
+        'forty two'
       ]);
     });
 

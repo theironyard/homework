@@ -48,7 +48,7 @@ inquirer.prompt([
   },
   {
     name: 'keywords',
-    message: 'keywords',
+    message: 'keywords (comma separated)',
     validate: function(input){
       return transformValidator(validate.validateKeywords)(validate.toArray(input));
     },
