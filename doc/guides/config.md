@@ -62,15 +62,14 @@ See [File: homework.json](../files/homework.json.md) for more information.
 
 ### browser
 
-* Default: OS X: `"open"`, Windows: `"start"`, Others: `"xdg-open"`
+* Default: OS X: `"open"`
 * Type: String
 
 The browser that is called by the `homework browse` command to open websites.
 
 ### editor
 
-* Default: `EDITOR` environment variable if set, or `"vi"` on Posix,
-  or `"notepad"` on Windows.
+* Default: `EDITOR` environment variable if set, or `"vi"` on Posix
 * Type: path
 
 The command to run for `homework edit` or `homework config edit`.
@@ -84,21 +83,6 @@ Commit message which is used by `homework version` when creating version commit.
 
 Any "%s" in the message will be replaced with the version number.
 
-### registries
-
-* Default: []
-* Type: Array of urls
-
-The base URLs of the homework assignment registries.
-
-### tag
-
-* Default: latest
-* Type: String
-
-The tag that is added to the assignment@version specified by the `homework
-tag` command, if no explicit tag is given.
-
 ### tmp
 
 * Default: TMPDIR environment variable, or "/tmp"
@@ -106,10 +90,3 @@ tag` command, if no explicit tag is given.
 
 Where to store temporary files and folders.  All temp files are deleted
 on success, but left behind on failure for forensic purposes.
-
-### userconfig
-
-* Default: ~/.homeworkrc
-* Type: path
-
-The location of user-level configuration settings.

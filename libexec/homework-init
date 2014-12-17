@@ -1,7 +1,81 @@
 #!/usr/bin/env node
+/*jshint multistr: true */
 /*
 # Usage: homework init
-# Summary: Interactively create a .homework.json file
-# Help: Interactively create a .homework.json file
+# Summary: Interactively create a homework assignment
+# Help: Interactively create a homework assignment
 */
 
+var inquirer = require('inquirer');
+var path = require('path');
+var fs = require('fs');
+var util = require('util');
+var validate = require('../lib/validate-homework-data');
+var initHomework = require('../lib/init-homework');
+
+console.log("This utility will walk you through creating a homework assignment.\n\
+It only covers the most common items, and tries to guess sane defaults.\n\
+\n\
+See `homework docs json` for definitive documentation on these fields\n\
+and exactly what they do.\n\
+\n\
+Press Control-C at any time to quit.");
+
+inquirer.prompt([
+  {
+    name: 'name',
+    message: 'name',
+    default: path.basename(process.cwd()),
+    validate: transformValidator(validate.validateName)
+  },
+  {
+    name: 'version',
+    message: 'version',
+    default: '0.0.1',
+    validate: transformValidator(validate.validateVersion)
+  },
+  {
+    name: 'title',
+    message: 'title',
+    default: function(answers){ return answers.name; },
+    validate: transformValidator(validate.validateTitle)
+  },
+  {
+    name: 'description',
+    message: 'description',
+    default: function(answers){ return answers.title; },
+    validate: transformValidator(validate.validateDescription)
+  },
+  {
+    name: 'keywords',
+    message: 'keywords',
+    validate: function(input){
+      return transformValidator(validate.validateKeywords)(validate.toArray(input));
+    },
+    filter: function(input){
+      return validate.toArray(input);
+    }
+  },
+  {
+    name: 'commit',
+    type: 'confirm',
+    message: function(answers){
+      var data = JSON.stringify(answers, null, 4) + '\n';
+      return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+    }
+  }
+], function(answers) {
+  if(answers.commit){
+    delete answers.commit;
+    initHomework(answers);
+  } else {
+    console.log('Aborted.');
+  }
+});
+
+function transformValidator(validator){
+  return function(input){
+    var result = validator(input);
+    return result.valid ? true : result.errors[0];
+  };
+}

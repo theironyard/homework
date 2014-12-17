@@ -9,4 +9,19 @@ describe('validate-homework-data', function(){
     it('should validate description');
     it('should validate keywords');
   });
+
+  describe('.toArray', function(){
+    it('should accept spaces and commas', function(){
+      expect(validate.toArray('one,two, three four')).to.deep.equal([
+        'one',
+        'two',
+        'three',
+        'four'
+      ]);
+    });
+
+    it('should return an empty array for an empty string', function(){
+      expect(validate.toArray('')).to.deep.equal([]);
+    });
+  });
 });

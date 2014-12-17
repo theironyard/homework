@@ -1,4 +1,4 @@
-init -- Interactively create a .homework.json file
+init -- Interactively create a homework assignment
 ==================================================
 
 ## SYNOPSIS
@@ -7,7 +7,7 @@ init -- Interactively create a .homework.json file
 
 ## DESCRIPTION
 
-This will ask you a bunch of questions, and then write a .homework.json for you.
+This will ask you a bunch of questions, and then scaffold a homework assignment for you.
 
 If you already have a .homework.json file, it'll read that first, and default to
 the options in there.

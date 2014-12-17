@@ -7,6 +7,5 @@
 
 var ROOT = process.env._HOMEWORK_ROOT;
 var packageJson = require(ROOT + "/package.json");
-var format = require('util').format;
 
-console.log(format("homework %s", packageJson.version));
+console.log("homework %s", packageJson.version);

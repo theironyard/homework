@@ -5,6 +5,7 @@ Apologies, this probably won’t make any sense to anyone but Jake for right now
 - existing commands to docs
 
 ## TODO
+- don’t just overwrite .homework.json
 - hw status show folder, give option to open
 - assignments are resolved top to bottom through the registries
 - Allow student to resubmit, but keep version history
@@ -25,6 +26,7 @@ Apologies, this probably won’t make any sense to anyone but Jake for right now
 
 # Someday
 ## TODO
+- test init-homework
 - http://wiki.commonjs.org/wiki/Packages/Registry
 - Assignments should be CC Non Commercial
 - open, browse a la https://github.com/npm/npm/blob/master/doc/cli/npm-docs.md or hub browse
