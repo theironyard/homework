@@ -27,38 +27,12 @@ Apologies, this probably won’t make any sense to anyone but Jake for right now
 # Someday
 ## TODO
 - test init-homework
-- http://wiki.commonjs.org/wiki/Packages/Registry
-- Assignments should be CC Non Commercial
 - open, browse a la https://github.com/npm/npm/blob/master/doc/cli/npm-docs.md or hub browse
 - https://github.com/npm/npm/blob/master/doc/cli/npm-ls.md
 - https://github.com/npm/npm/blob/master/doc/cli/npm-cache.md
-- https://github.com/npm/npm/blob/master/doc/cli/npm-unpublish.md
 - https://github.com/npm/npm/blob/master/doc/files/npm-folders.md
 https://github.com/npm/npm/blob/master/doc/cli/npm-view.md
 - https://github.com/npm/lockfile
-
-## Config options
-See npm-config(7)
-- ca*
-- fetch-retry and friends
-- cache and friends
-- color
-- depth
-- git
-- https-proxy
-- key
-- init-*
-- local-address
-- loglevel
-- logstream
-- proxy
-- rollback
-- spin
-- strict-ssl
-- unicode
-- user-agent
-- viewer
-- umask
 
 ## Demi
 - autopopulate teaching journals from keywords

@@ -16,9 +16,7 @@
   },
   "homepage": "https://github.com/jacobthemyth/homework",
   "preferGlobal": "true",
-  "bin": {
-    "homework" : "bin/homework"
-  },
+  "bin": "./bin/homework",
   "dependencies": {
     "colors": "^1.0.3",
     "commander": "^2.5.0",
