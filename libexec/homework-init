@@ -47,6 +47,19 @@ inquirer.prompt([
     validate: transformValidator(validate.validateDescription)
   },
   {
+    name: 'readmeTemplate',
+    message: 'Choose a README flavor',
+    type: 'list',
+    choices: ['JavaScript', 'Ruby', 'Python', 'iOS', 'Web Design', 'Plain']
+  },
+  {
+    name: 'difficultyModes',
+    message: 'Which difficulty modes do you want?',
+    type: 'checkbox',
+    choices: ['Easy', 'Normal', 'Hard', 'Nightmare'],
+    default: ['Normal']
+  },
+  {
     name: 'keywords',
     message: 'keywords (comma separated)',
     validate: function(input){
@@ -61,6 +74,8 @@ inquirer.prompt([
     type: 'confirm',
     message: function(answers){
       var data = JSON.stringify(answers, null, 4) + '\n';
+      // TODO: this console.logs the config BEFORE it's been 
+      // "normalized" in the functional core, so it's wrong. Dead wrong.
       return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
     }
   }
