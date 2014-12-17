@@ -2,6 +2,8 @@
 
 This project is using [README Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html) to document the requirements of the application. The functionality will match the documentation at version 1.0.0. Until then, consider the documentation unreliable.
 
+**Note** when you run `homework init`, you will see `[conflict]` appear in the console. There is no conflict, but is due to a plugin and will be fixed before 1.0.
+
 ## Description
 
 homework is a tool for managing homework assignments for a primarily code-based curriculum. It was developed for and is used by the courses at [The Iron Yard](http://theironyard.com).
