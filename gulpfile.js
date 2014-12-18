@@ -3,7 +3,7 @@ var exec = require('child_process').exec;
 var $ = require('gulp-load-plugins')();
 
 gulp.task('test', function(cb){
-  exec('mocha --bail "test/**/*.js"', function (err, stdout, stderr) {
+  exec('mocha --bail --recursive test 2>&1 | simple-stacktrace', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);

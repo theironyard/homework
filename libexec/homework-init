@@ -12,6 +12,7 @@ var fs = require('fs');
 var util = require('util');
 var validate = require('../lib/validate-homework-data');
 var initHomework = require('../lib/init-homework');
+var normalize = require('../lib/normalize-homework-data');
 
 console.log("This utility will walk you through creating a homework assignment.\n\
 It only covers the most common items, and tries to guess sane defaults.\n\
@@ -67,15 +68,16 @@ inquirer.prompt([
     },
     filter: function(input){
       return validate.toArray(input);
+    },
+    default: function(answers){
+      return answers.readmeTemplate;
     }
   },
   {
     name: 'commit',
     type: 'confirm',
     message: function(answers){
-      var data = JSON.stringify(answers, null, 4) + '\n';
-      // TODO: this console.logs the config BEFORE it's been 
-      // "normalized" in the functional core, so it's wrong. Dead wrong.
+      var data = JSON.stringify(normalize(answers), null, 4) + '\n';
       return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
     }
   }

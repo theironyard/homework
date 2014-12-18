@@ -2,7 +2,6 @@ Apologies, this probably won’t make any sense to anyone but Jake for right now
 
 # MVP
 ## TODO
-- get rid of gulp-conflict messages
 - hw status show folder, give option to open
 - assignments are resolved top to bottom through the registries
 - Allow student to resubmit, but keep version history
