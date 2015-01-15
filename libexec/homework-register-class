@@ -12,7 +12,7 @@ var fs = require('fs');
 var util = require('util');
 var _ = require('lodash');
 var validate = require('../lib/validate-organization');
-// var registerClass = require('../lib/register-class');
+var registerClass = require('../lib/register-class');
 var fetchOrg = require('../lib/github/fetch-org');
 var spinner = require('../lib/spinner')(inquirer);
 var normalize = require('../lib/normalize-org-data');
@@ -20,7 +20,6 @@ var formatForChoices = require('../lib/format-for-choices');
 
 console.log(
 "This utility is for instructors looking to register students in a new class.\n\
-It will add all members in a GitHub organization, and ask which user is the instructor.\n \n\
 See `homework docs json` for definitive documentation.\n \n\
 Press Control-C at any time to quit."
 );
@@ -60,8 +59,7 @@ function specifyInstructor(prevAnswers){
       message: 'Choose the instructor for this class',
       type: 'list',
       choices: function (answers) {
-        // return an array of members, with the name/value scheme that
-        // inquirer prefers
+        // return an array with name/value props that inquirer prefers
         return formatForChoices(prevAnswers.members, 'login');
       }
     },
@@ -77,7 +75,7 @@ function specifyInstructor(prevAnswers){
   ], function(answers) {
     if(answers.commit){
       delete answers.commit;
-      console.log("GOOD JOB")
+      registerClass(answers);
     } else {
       console.log('Aborted.');
     }
