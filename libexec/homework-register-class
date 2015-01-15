@@ -15,6 +15,8 @@ var validate = require('../lib/validate-organization');
 // var registerClass = require('../lib/register-class');
 var fetchOrg = require('../lib/github/fetch-org');
 var spinner = require('../lib/spinner')(inquirer);
+var normalize = require('../lib/normalize-org-data');
+var formatForChoices = require('../lib/format-for-choices');
 
 console.log(
 "This utility is for instructors looking to register students in a new class.\n\
@@ -37,13 +39,10 @@ inquirer.prompt([
     spinner.start('Fetching organization... ');
 
     fetchOrg(answers.orgName).then(function (data) {
+      spinner.stop();
 
       // only keep the login and id
-      answers.members = _.map(data, function (member) {
-                          return _.pick(member, ['login', 'id'])
-                        });
-      
-      spinner.stop();
+      answers.members = normalize(data);
       specifyInstructor(answers);
     })
   } else {
@@ -58,17 +57,12 @@ function specifyInstructor(prevAnswers){
   inquirer.prompt([
     {
       name: 'instructor',
-      message: 'Chooese the instructor for this class',
+      message: 'Choose the instructor for this class',
       type: 'list',
       choices: function (answers) {
         // return an array of members, with the name/value scheme that
         // inquirer prefers
-        return _.map(prevAnswers.members, function (member) {
-          return {
-            name: member.login,
-            value: member
-          }
-        });
+        return formatForChoices(prevAnswers.members, 'login');
       }
     },
     {
