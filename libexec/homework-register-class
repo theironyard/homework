@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+/*jshint multistr: true */
+/*
+# Usage: homework registerClass
+# Summary: Interactively create a homework assignment
+# Help: Interactively create a homework assignment
+*/
+
+var inquirer = require('inquirer');
+var path = require('path');
+var fs = require('fs');
+var util = require('util');
+var _ = require('lodash');
+var validate = require('../lib/validate-organization');
+// var registerClass = require('../lib/register-class');
+var fetchOrg = require('../lib/github/fetch-org');
+
+console.log(
+"This utility is for instructors looking to register students in a new class.\n\
+It will add all members in a GitHub organization, and ask which user is the instructor.\n \n\
+See `homework docs json` for definitive documentation.\n \n\
+Press Control-C at any time to quit."
+);
+
+inquirer.prompt([
+  {
+    name: 'orgName',
+    message: 'Organization name (last segment of org\'s url)',
+    default: path.basename(process.cwd()),
+    validate: transformValidator(validate.validateName)
+  },
+
+], function(answers) {
+  if(answers.orgName){
+    fetchOrg(answers.orgName, inquirer).then(function (data) {
+
+      // only keep the login and id
+      answers.members = _.map(data, function (member) {
+                          return _.pick(member, ['login', 'id'])
+                        });
+      
+      specifyInstructor(answers);
+    })
+  } else {
+    console.log('Aborted.');
+  }
+});
+
+
+// Wait for the fetchOrg promise to resolve, then call this
+// second set of questions
+function specifyInstructor(prevAnswers){
+  inquirer.prompt([
+    {
+      name: 'instructor',
+      message: 'Chooese the instructor for this class',
+      type: 'list',
+      choices: function (answers) {
+        // return an array of members, with the name/value scheme that
+        // inquirer prefers
+        return _.map(prevAnswers.members, function (member) {
+          return {
+            name: member.login,
+            value: member
+          }
+        });
+      }
+    },
+    {
+      name: 'commit',
+      type: 'confirm',
+      message: function(answers){
+        answers.students = _.without(prevAnswers.members, answers.instructor);
+        var data = JSON.stringify(answers, null, 4) + '\n';
+        return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+      }
+    }
+  ], function(answers) {
+    if(answers.commit){
+      delete answers.commit;
+      console.log("GOOD JOB")
+    } else {
+      console.log('Aborted.');
+    }
+  });  
+}
+
+
+function transformValidator(validator){
+  return function(input){
+    var result = validator(input);
+    return result.valid ? true : result.errors[0];
+  };
+}
