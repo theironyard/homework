@@ -15,7 +15,7 @@ Run `homework help` to get a list of available commands.
 The primary way to install `homework` is using npm:
 
 ```sh
-$ npm install -g jacobthemyth/homework
+$ npm install -g theironyard/homework
 ```
 
 For alternative installation methods, see [INSTALL.md](INSTALL.md)
