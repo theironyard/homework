@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+/*jshint multistr: true */
+/*
+# Usage: homework assign
+# Summary: Interactively assign a homework assignment
+# Help: Interactively assign a homework assignment
+*/
+ 
+var inquirer = require('inquirer');
+// var path = require('path');
+// var fs = require('fs');
+var util = require('util');
+// var validate = require('../lib/validate-homework-data');
+// var initHomework = require('../lib/init-homework');
+// var normalize = require('../lib/normalize-homework-data');
+ 
+console.log("This utility will walk you through assigning a homework assignment.\n\
+You can only assign tasks that have already been created, to classes you currently teach.\n\
+\n\
+Press Control-C at any time to quit.");  
+  
+inquirer.prompt([
+  {
+    name: 'whichClass',
+    message: 'Choose a class to complete the assignment.',
+    type: 'list',
+    choices: ['GVL FE 2015 Spring', 'GVL FE 2015 Summer', 'GVL FE 2015 Fall', 'GVL FE 2015 Winter']
+  },
+  {
+    name: 'whichAssignment',
+    message: 'Which task would you like to assign?',
+    type: 'list',
+    choices: ['Surf and Paddle', 'JS Koans', 'Chat App', 'Video Game']
+  },
+  {
+    name: 'insertWhere',
+    message: 'Where would you like to insert this task?',
+    type: 'list',
+    choices: [new inquirer.Separator('---Week 1---'), 'Surf and Paddle',
+              new inquirer.Separator('---Week 2---'), 'CSS Transitions',
+              new inquirer.Separator('---Week 3---'), 'Chat App',
+              new inquirer.Separator('---Week 4---'), 'JS Koans',
+              new inquirer.Separator('---Week 5---'), 'GitHub Profile Rebuild',
+              new inquirer.Separator('---Week 6---'), 'Dice Roller',
+              new inquirer.Separator('---Week 7---'), 'Responsive Design',
+              new inquirer.Separator('---Week 8---'), 'Intro to Backbone' 'Intro to Parse',
+              new inquirer.Separator('---Week 9---'), 'Video Game',
+              new inquirer.Separator('---Final Project---'), 'Video Game',
+              ]
+  },
+//   {
+//     name: 'commit',
+//     type: 'confirm',
+//     message: function(answers){
+//       var data = JSON.stringify(normalize(answers), null, 4) + '\n';
+//       return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+//     }
+//   }
+// ], function(answers) {
+//   if(answers.commit){
+//     delete answers.commit;
+//     initHomework(answers);
+//   } else {
+//     console.log('Aborted.');
+//   }
+// });
+ 
+// function transformValidator(validator){
+//   return function(input){
+//     var result = validator(input);
+//     return result.valid ? true : result.errors[0];
+//   };
+// }
