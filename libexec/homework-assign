@@ -5,10 +5,50 @@
 # Summary: Interactively assign a homework assignment
 # Help: Interactively assign a homework assignment
 */
- 
+
+
+// stubbed data
+var stubbedProjectList =   [
+    {
+        "id": "8afh3age28gehsal9j23e1ifis",
+        "repository": "https://github.com/theironyard.com/js-assignments",
+        "url": "https://github.com/theironyard/js-assignments/tree/bbd9f77989384afac6753fa2cbf32b8367e221db/html-intro-surf-paddle",
+        "version": "0.0.1",
+        "sha": "bbd9f77989384afac6753fa2cbf32b8367e221db",
+        "timestamp": "1422547777159",
+        "name": "Surf and Paddle",
+        "title": "html-intro-surf-paddle",
+        "description": "As a developer on the web, you will sometimes be tasked with creating an html page simply from an image file.  In this assignment, you'll be taking an image and turning it into a functioning website.",
+        "keywords": [
+            "html",
+            "css",
+            "layout",
+            "responsive"
+        ]
+    },
+    {
+        "id": "a0ab938hgal3g920agalh39ghs",
+        "repository": "https://github.com/theironyard.com/js-assignments",
+        "url": "https://github.com/theironyard/js-assignments/tree/1e9a3f1c9d0c3d4873266d7536e3ad800b695fa3/color-clock",
+        "version": "0.0.1",
+        "sha": "1e9a3f1c9d0c3d4873266d7536e3ad800b695fa3",
+        "timestamp": "1422547777159",
+        "name": "Color Clock",
+        "title": "color-clock",
+        "description": "This assignment serves to reinforce JS fundamentals with setInterval, writing to the DOM, practicing CSS animations, positions, and transforms, and finally breaking down complex problems into simple sequences in code.",
+        "keywords": [
+            "JavaScript"
+        ]
+    }
+]
+
+
+
+
 var inquirer = require('inquirer');
 var fs = require('fs');
 var util = require('util');
+var _ = require('lodash');
 var assignHomework = require('../lib/homework-assign');
  
 console.log("This utility will walk you through assigning a homework assignment.\n\
@@ -18,20 +58,22 @@ Press Control-C at any time to quit.");
 
 inquirer.prompt([
   {
-    name: 'whichClass',
-    message: 'Choose a class to complete the assignment.',
+    name: 'cohort',
+    message: 'Which cohort would you like to assign this to?',
     type: 'list',
     choices: ['GVL FE 2015 Spring', 'GVL FE 2015 Summer', 'GVL FE 2015 Fall', 'GVL FE 2015 Winter']
   },
   {
-    name: 'whichAssignment',
-    message: 'Which task would you like to assign?',
+    name: 'project',
+    message: function(answers){
+      return 'Which project would you like to assign to '+ answers.cohort + '?'
+    },
     type: 'list',
-    choices: ['Surf and Paddle', 'JS Koans', 'Chat App', 'Video Game']
+    choices: formatForChoices(stubbedProjectList, 'name')
   },
   {
-    name: 'insertWhere',
-    message: 'Where would you like to insert this task? [Task will be added immediately after selection.]',
+    name: 'insertAtIndex',
+    message: 'Where would you like to insert this project? [Task will be added immediately after selection.]',
     type: 'list',
     choices: [
       new inquirer.Separator('---Week 1---'), 'Surf and Paddle',
@@ -46,7 +88,27 @@ inquirer.prompt([
       new inquirer.Separator('---Final Project---'), 'Video Game',
     ]
   },
+  {
+    name: 'commit',
+    type: 'confirm',
+    message: function(answers){
+      var data = JSON.stringify(answers, null, 4) + '\n';
+      return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+    }
+  }
 
 ], function(data) {
   assignHomework(data);
 });
+
+
+// remove this and replace its call above once
+// PR #2 is merged.
+function formatForChoices (list, name){
+  return _.map(list, function (item) {
+    return {
+      name: item[name],
+      value: item
+    }
+  })
+}
