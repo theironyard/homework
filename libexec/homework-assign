@@ -16,35 +16,38 @@ You can only assign tasks that have already been created, to classes you current
 Press Control-C at any time to quit.");  
 
 inquirer.prompt([
-	{
-		name: 'whichClass',
-		message: 'Choose a class to complete the assignment.',
-		type: 'list',
-		choices: ['GVL FE 2015 Spring', 'GVL FE 2015 Summer', 'GVL FE 2015 Fall', 'GVL FE 2015 Winter']
-	},
-	{
-		name: 'whichAssignment',
-		message: 'Which task would you like to assign?',
-		type: 'list',
-		choices: ['Surf and Paddle', 'JS Koans', 'Chat App', 'Video Game']
-	},
-	{
-		name: 'insertWhere',
-		message: 'Where would you like to insert this task? [Task will be added immediately after selection.]',
-		type: 'list',
-		choices: [new inquirer.Separator('---Week 1---'), 'Surf and Paddle',
-							new inquirer.Separator('---Week 2---'), 'CSS Transitions',
-							new inquirer.Separator('---Week 3---'), 'Chat App',
-							new inquirer.Separator('---Week 4---'), 'JS Koans',
-							new inquirer.Separator('---Week 5---'), 'GitHub Profile Rebuild',
-							new inquirer.Separator('---Week 6---'), 'Dice Roller',
-							new inquirer.Separator('---Week 7---'), 'Responsive Design',
-							new inquirer.Separator('---Week 8---'), 'Intro to Backbone', 'Intro to Parse',
-							new inquirer.Separator('---Week 9---'), 'Video Game',
-							new inquirer.Separator('---Final Project---'), 'Video Game',
-							]
-	},
+  {
+    name: 'whichClass',
+    message: 'Choose a class to complete the assignment.',
+    type: 'list',
+    choices: ['GVL FE 2015 Spring', 'GVL FE 2015 Summer', 'GVL FE 2015 Fall', 'GVL FE 2015 Winter']
+  },
+  {
+    name: 'whichAssignment',
+    message: 'Which task would you like to assign?',
+    type: 'list',
+    choices: ['Surf and Paddle', 'JS Koans', 'Chat App', 'Video Game']
+  },
+  {
+    name: 'insertWhere',
+    message: 'Where would you like to insert this task? [Task will be added immediately after selection.]',
+    type: 'list',
+    choices: [
+      new inquirer.Separator('---Week 1---'), 'Surf and Paddle',
+      new inquirer.Separator('---Week 2---'), 'CSS Transitions',
+      new inquirer.Separator('---Week 3---'), 'Chat App',
+      new inquirer.Separator('---Week 4---'), 'JS Koans',
+      new inquirer.Separator('---Week 5---'), 'GitHub Profile Rebuild',
+      new inquirer.Separator('---Week 6---'), 'Dice Roller',
+      new inquirer.Separator('---Week 7---'), 'Responsive Design',
+      new inquirer.Separator('---Week 8---'), 'Intro to Backbone', 'Intro to Parse',
+      new inquirer.Separator('---Week 9---'), 'Video Game',
+      new inquirer.Separator('---Final Project---'), 'Video Game',
+    ]
+  },
 
 ], function(data) {
-  //data ready to write to JSON
+  //requiring lib/assign-homework/ and passing data to it here?
+  // var answers = require('../lib/assign-homework');
+
 });
