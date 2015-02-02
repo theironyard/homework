@@ -9,6 +9,7 @@
 var inquirer = require('inquirer');
 var fs = require('fs');
 var util = require('util');
+var assignHomework = require('../lib/homework-assign');
  
 console.log("This utility will walk you through assigning a homework assignment.\n\
 You can only assign tasks that have already been created, to classes you currently teach.\n\
@@ -47,7 +48,5 @@ inquirer.prompt([
   },
 
 ], function(data) {
-  //requiring lib/assign-homework/ and passing data to it here?
-  // var answers = require('../lib/assign-homework');
-
+  assignHomework(data);
 });
