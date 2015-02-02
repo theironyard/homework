@@ -7,19 +7,15 @@
 */
  
 var inquirer = require('inquirer');
-var path = require('path');
 var fs = require('fs');
 var util = require('util');
-// var validate = require('../lib/validate-homework-data');
-// var initHomework = require('../lib/init-homework');
-// var normalize = require('../lib/normalize-homework-data');
  
 console.log("This utility will walk you through assigning a homework assignment.\n\
 You can only assign tasks that have already been created, to classes you currently teach.\n\
 \n\
 Press Control-C at any time to quit.");  
 
-var questions = [
+inquirer.prompt([
 	{
 		name: 'whichClass',
 		message: 'Choose a class to complete the assignment.',
@@ -47,22 +43,8 @@ var questions = [
 							new inquirer.Separator('---Week 9---'), 'Video Game',
 							new inquirer.Separator('---Final Project---'), 'Video Game',
 							]
-	}
-];
+	},
 
-inquirer.prompt(questions, function(answers) {
-	// console.log(answers);
-	//  console.log(answers.whichClass);
-	//  console.log(answers.whichAssignment);
-	//  console.log(answers.insertWhere);
-
-	var answersJSON = '/tmp/hw-assign.json';
-
-	fs.writeFile(answersJSON, JSON.stringify(answers), function(error) {
-		if(error) {
-			console.log('Error: JSON file not created.');
-		} else {
-			console.log('Success! JSON saved to ' + answersJSON);
-		}
-	}); 
+], function(data) {
+  //data ready to write to JSON
 });
