@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+/*jshint multistr: true */
+/*
+# Usage: homework registerClass
+# Summary: Interactively create a homework assignment
+# Help: Interactively create a homework assignment
+*/
+
+var inquirer = require('inquirer');
+var path = require('path');
+var fs = require('fs');
+var util = require('util');
+var _ = require('lodash');
+var validate = require('../lib/validate-organization');
+var registerClass = require('../lib/register-class');
+var fetchOrg = require('../lib/github/fetch-org');
+var spinner = require('../lib/spinner')(inquirer);
+var normalize = require('../lib/normalize-org-data');
+var formatForChoices = require('../lib/format-for-choices');
+
+console.log(
+"This utility is for instructors looking to register students in a new class.\n\
+See `homework docs json` for definitive documentation.\n \n\
+Press Control-C at any time to quit."
+);
+
+inquirer.prompt([
+  {
+    name: 'orgName',
+    message: 'Organization name (last segment of org\'s url)',
+    default: path.basename(process.cwd()),
+    validate: transformValidator(validate.validateName)
+  },
+
+], function(answers) {
+  if(answers.orgName){
+
+    spinner.start('Fetching organization... ');
+
+    fetchOrg(answers.orgName).then(function (data) {
+      spinner.stop();
+
+      // only keep the login and id
+      answers.members = normalize(data);
+      specifyInstructor(answers);
+    })
+  } else {
+    console.log('Aborted.');
+  }
+});
+
+
+// Wait for the fetchOrg promise to resolve, then call this
+// second set of questions
+function specifyInstructor(prevAnswers){
+  inquirer.prompt([
+    {
+      name: 'instructor',
+      message: 'Choose the instructor for this class',
+      type: 'list',
+      choices: function (answers) {
+        // return an array with name/value props that inquirer prefers
+        return formatForChoices(prevAnswers.members, 'login');
+      }
+    },
+    {
+      name: 'commit',
+      type: 'confirm',
+      message: function(answers){
+        answers.students = _.without(prevAnswers.members, answers.instructor);
+        var data = JSON.stringify(answers, null, 4) + '\n';
+        return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+      }
+    }
+  ], function(answers) {
+    if(answers.commit){
+      delete answers.commit;
+      registerClass(answers);
+    } else {
+      console.log('Aborted.');
+    }
+  });  
+}
+
+
+function transformValidator(validator){
+  return function(input){
+    var result = validator(input);
+    return result.valid ? true : result.errors[0];
+  };
+}
