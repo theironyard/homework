@@ -14,7 +14,7 @@ var validate = require('../lib/validate-homework-data');
 var initHomework = require('../lib/init-homework');
 var normalize = require('../lib/normalize-homework-data');
 var walk = require('walk');
-var files = []
+var files = [];
 var filePath = process.cwd();
 
 console.log("This utility will walk you through creating a homework assignment.\n\
@@ -33,19 +33,13 @@ var walker = walk.walk ( filePath , { followLinks: false});
 walker.on('file', function(root, stat, next) {
   //add each file you find to list of files in varable files
 
-  // relativePath replaces the first and only the fist '/'' in the file 
+  // relativePath replaces the first and only the fist '/' in the file 
   // so the file structure is evident
   var relativePath = root.replace(filePath, '').replace(/^\//, '');
 
   files.push( (relativePath.length ? relativePath + '/' : '') + stat.name);
   next();
 });
-
-walker.on('end', function(){
-  // console.log(files)
-  // not doing anything here the varialble files is bing called below
-})
-
 
 inquirer.prompt([
   {
@@ -100,7 +94,7 @@ inquirer.prompt([
   },
   {
     name: 'supplementalFiles',
-    message: 'What files do you want, boss?',
+    message: 'What files do you want?',
     type: 'checkbox',
     choices: files,
     default: files
