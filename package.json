@@ -35,7 +35,8 @@
     "q": "^1.1.2",
     "rc": "^0.5.4",
     "semver": "^4.1.0",
-    "validator": "^3.24.0"
+    "validator": "^3.24.0",
+    "walk": "^2.3.9"
   },
   "devDependencies": {
     "chai": "^1.10.0",
