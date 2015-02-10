@@ -13,6 +13,9 @@ var util = require('util');
 var validate = require('../lib/validate-homework-data');
 var initHomework = require('../lib/init-homework');
 var normalize = require('../lib/normalize-homework-data');
+var walk = require('walk');
+var files = [];
+var filePath = process.cwd();
 
 console.log("This utility will walk you through creating a homework assignment.\n\
 It only covers the most common items, and tries to guess sane defaults.\n\
@@ -21,6 +24,22 @@ See `homework docs json` for definitive documentation on these fields\n\
 and exactly what they do.\n\
 \n\
 Press Control-C at any time to quit.");
+
+// currently async, may need to be changed to sync.  
+// The user could get ahead, and we do not want that.. 
+
+var walker = walk.walk ( filePath , { followLinks: false});
+
+walker.on('file', function(root, stat, next) {
+  //add each file you find to list of files in varable files
+
+  // relativePath replaces the first and only the fist '/' in the file 
+  // so the file structure is evident
+  var relativePath = root.replace(filePath, '').replace(/^\//, '');
+
+  files.push( (relativePath.length ? relativePath + '/' : '') + stat.name);
+  next();
+});
 
 inquirer.prompt([
   {
@@ -72,6 +91,13 @@ inquirer.prompt([
     default: function(answers){
       return answers.readmeTemplate;
     }
+  },
+  {
+    name: 'supplementalFiles',
+    message: 'What files do you want?',
+    type: 'checkbox',
+    choices: files,
+    default: files
   },
   {
     name: 'commit',
