@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+/*jshint multistr: true */
+/*
+# Usage: homework config
+# Summary: Interactively 
+# Help: Interactively
+*/
+
+var inquirer = require('inquirer');
+var path = require('path');
+var fs = require('fs');
+var _ = require('lodash');
+var util = require('util');
+var walk = require('walk');
+var configHomework = require('../lib/config-homework/index.js');
+
+console.log("This utility will walk you through some coolstuff™\n\
+\n\
+See `homework docs json` for definitive documentation on these fields\n\
+and exactly what they do.\n\
+\n\
+Press Control-C at any time to quit.");
+
+
+
+inquirer.prompt([
+  {
+    type: 'input',
+    name: 'name',
+    message: 'Your name',
+    //default: function(input){ return answers.name; },
+  },
+  {
+    type: 'input',
+    name: 'githubName',
+    message: 'Your GitHUb name',
+    //default: function(input) { return answers.githubName; },
+  },
+  {
+    type: 'input',
+    name: 'cohortID',
+    message: 'Your cohort ID',
+    //default: function(input){ return answers.cohortId; },
+  },
+  {
+    name: 'commit',
+    type: 'confirm',
+    message: function(answers){
+      var data = JSON.stringify(answers, null, 4) + '\n';
+      return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+    }
+  }
+], function(data) {
+  configHomework(data)
+});
+
