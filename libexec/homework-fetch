@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+/*jshint multistr: true */
+/*
+# Usage: homework fetch
+# Summary: Download your next homework assignment
+# Help: Download your next homework assignment
+*/
+
+var inquirer = require('inquirer');
+var path = require('path');
+var fs = require('fs');
+var util = require('util');
+var assignments = require('../lib/api/fetch-assignment/index.js');
+var spinner = require('../lib/spinner')(inquirer);
+// var validate = require('../lib/validate-homework-data');
+// var normalize = require('../lib/normalize-homework-data');
+
+assignments.setup('123abc'); // setup cohort
+
+spinner.start('Fetching assignment... ');
+assignments.next().on('complete',function(response){
+  spinner.stop();
+  console.log(response)
+})
+
+
+// inquirer.prompt([
+//   {
+//     name: 'commit',
+//     type: 'confirm',
+//     message: function(answers){
+//       var data = JSON.stringify(normalize(answers), null, 4) + '\n';
+//       return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+//     }
+//   }
+// ], function(answers) {
+//   if(answers.commit){
+//     delete answers.commit;
+//     initHomework(answers);
+//   } else {
+//     console.log('Aborted.');
+//   }
+// });
+
+// function transformValidator(validator){
+//   return function(input){
+//     var result = validator(input);
+//     return result.valid ? true : result.errors[0];
+//   };
+// }
