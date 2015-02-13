@@ -11,7 +11,6 @@ var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
 var util = require('util');
-var walk = require('walk');
 var configHomework = require('../lib/config-homework/index.js');
 
 console.log("This utility will walk you through some coolstuff™\n\
@@ -27,19 +26,24 @@ inquirer.prompt([
   {
     type: 'input',
     name: 'name',
-    message: 'Your name',
+    message: 'Please type your name',
     //default: function(input){ return answers.name; },
   },
   {
     type: 'input',
     name: 'githubName',
-    message: 'Your GitHUb name',
+    message: 'Please type your GitHUb username',
     //default: function(input) { return answers.githubName; },
   },
   {
     type: 'input',
+    name: 'githubID',
+    message: 'Please type your Github ID'
+  },
+  {
+    type: 'input',
     name: 'cohortID',
-    message: 'Your cohort ID',
+    message: 'Please type your cohort ID',
     //default: function(input){ return answers.cohortId; },
   },
   {
