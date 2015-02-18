@@ -2,7 +2,7 @@
 /*jshint multistr: true */
 /*
 # Usage: homework config
-# Summary: Interactively 
+# Summary: Interactively
 # Help: Interactively
 */
 
@@ -47,11 +47,18 @@ inquirer.prompt([
     //default: function(input){ return answers.cohortId; },
   },
   {
+    type: 'input',
+    name: 'assignmentsDirectory',
+    message: 'Please type the name of the directory for assignments',
+    default: '~/homework'
+  },
+  {
     name: 'commit',
     type: 'confirm',
     message: function(answers){
       var data = JSON.stringify(answers, null, 4) + '\n';
-      return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
+      return util.format("About to write to: .homeworkrc/.config.json is this ok? ",".homeworkrc/.config.json"  , data);
+      //return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
     }
   }
 ], function(data) {
