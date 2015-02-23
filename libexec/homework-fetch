@@ -9,33 +9,62 @@
 var inquirer = require('inquirer');
 var path = require('path');
 var fs = require('fs');
+var _ = require('lodash');
 var mkdirp = require('mkdirp')
 var util = require('util');
 var assignments = require('../lib/api/fetch-assignment/index.js');
 var spinner = require('../lib/spinner')(inquirer);
 var filepath = process.env.HOME;
-// var validate = require('../lib/validate-homework-data');
-// var normalize = require('../lib/normalize-homework-data');
+var obj;
+
+// Read the file and send to the callback
+fs.readFile('.homeworkrc', handleFile)
+
+// Write the callback function
+function handleFile(err, data) {
+   if (err) throw err
+   obj = JSON.parse(data)
+    console.log(obj);
+    poo = _.pick(obj, 'githubID');
+    console.log(poo)
+}
+// fs.readFile('.homeworkrc', 'utf8', function(err, data){
+//   if (err) {
+//     return console.log(err);
+//   }
+//   //console.log(data);
+//   obj = JSON.parse(data)
+//   console.log(obj.get('name'))
+// });
+
+
 
 // stting new filepath for the fetch data to be saved to
 // testfetch need t be the destination directory specified
 // in the homeworkrc file
 var newfilepath = path.join(filepath, '/testfetch')
+//this will be where we save all the files
+var destinationfilepath = mkdirp(newfilepath, function(err){
+  	if(err) {
+  		console.log(err);
+  	} else 	{
+  		console.log(newfilepath, "now exists");
+  		//console.log(response)
+  	}
+})
 
 assignments.setup('123abc'); // setup cohort
 
 spinner.start('Fetching assignment... ');
 assignments.next().on('complete',function(response){
-  spinner.stop();
-  console.log(response)
- 	mkdirp(newfilepath, response.json, function(err){
-  	if(err) {
-  		console.log(err);
-  	} else 	{
-  		console.log(newfilepath, "now exists");
-  		console.log(response)
-  	}
-  })
+  	spinner.stop();
+  	console.log(response.project.repository);
+  	//console.log(destinationfilepath)
+  	_.each(response.project.related_files, function(item){
+  		links = path.join(response.project.url, item)
+  		console.log(links)
+  	})
+
 
 })
 
