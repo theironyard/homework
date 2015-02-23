@@ -9,11 +9,18 @@
 var inquirer = require('inquirer');
 var path = require('path');
 var fs = require('fs');
+var mkdirp = require('mkdirp')
 var util = require('util');
 var assignments = require('../lib/api/fetch-assignment/index.js');
 var spinner = require('../lib/spinner')(inquirer);
+var filepath = process.env.HOME;
 // var validate = require('../lib/validate-homework-data');
 // var normalize = require('../lib/normalize-homework-data');
+
+// stting new filepath for the fetch data to be saved to
+// testfetch need t be the destination directory specified
+// in the homeworkrc file
+var newfilepath = path.join(filepath, '/testfetch')
 
 assignments.setup('123abc'); // setup cohort
 
@@ -21,6 +28,15 @@ spinner.start('Fetching assignment... ');
 assignments.next().on('complete',function(response){
   spinner.stop();
   console.log(response)
+ 	mkdirp(newfilepath, response.json, function(err){
+  	if(err) {
+  		console.log(err);
+  	} else 	{
+  		console.log(newfilepath, "now exists");
+  		console.log(response)
+  	}
+  })
+
 })
 
 
