@@ -10,63 +10,59 @@ var inquirer = require('inquirer');
 var path = require('path');
 var fs = require('fs');
 var _ = require('lodash');
-var mkdirp = require('mkdirp')
+var mkdirp = require('mkdirp');
 var util = require('util');
 var assignments = require('../lib/api/fetch-assignment/index.js');
 var spinner = require('../lib/spinner')(inquirer);
 var filepath = process.env.HOME;
 var obj;
 
-// Read the file and send to the callback
+
+// Read the homeworkrc file and send to the callback
 fs.readFile('.homeworkrc', handleFile)
 
-// Write the callback function
+// callback function need to do something with it  dum, dum, dummmmm
 function handleFile(err, data) {
    if (err) throw err
    obj = JSON.parse(data)
-    console.log(obj);
-    poo = _.pick(obj, 'githubID');
-    console.log(poo)
+   //console.log("homeworkrc file", obj);
+	destinationDirectory = _.result(obj, 'assignmentsDirectory');
+	//console.log("destinationDirectory", destinationDirectory)
 }
-// fs.readFile('.homeworkrc', 'utf8', function(err, data){
-//   if (err) {
-//     return console.log(err);
-//   }
-//   //console.log(data);
-//   obj = JSON.parse(data)
-//   console.log(obj.get('name'))
-// });
 
 
-
-// stting new filepath for the fetch data to be saved to
-// testfetch need t be the destination directory specified
-// in the homeworkrc file
-var newfilepath = path.join(filepath, '/testfetch')
+// setting new filepath for the fetch data to be saved to
+// testfetch needs to be the destinationDirectory specified
+// in the homeworkrc file that the handleFile function is handling
+// right now am using /testfetch 
 //this will be where we save all the files
-var destinationfilepath = mkdirp(newfilepath, function(err){
-  	if(err) {
-  		console.log(err);
-  	} else 	{
-  		console.log(newfilepath, "now exists");
-  		//console.log(response)
-  	}
-})
+var newfilepath = path.join(filepath, '/testfetch/')
 
-assignments.setup('123abc'); // setup cohort
 
+// setup cohort
+assignments.setup('123abc'); 
+
+
+// fetch assignment data command located in folder lib/api/fetch-assignment/index.s
 spinner.start('Fetching assignment... ');
 assignments.next().on('complete',function(response){
   	spinner.stop();
-  	console.log(response.project.repository);
-  	//console.log(destinationfilepath)
+  	//console.log(response);
+  	//console.log(response.project.repository);
+  	//go over each related file and  concat  
   	_.each(response.project.related_files, function(item){
-  		links = path.join(response.project.url, item)
-  		console.log(links)
+  		links = path.join(response.project.url, item);
+  		console.log('response.project.url',response.project.url);
+  		//need to fetch this url and place in newfilepath defined above
   	})
 
 
 })
+
+
+//raw link
+// https://raw.githubusercontent.com/theironyard/js-assignments/bbd9f77989384afac6753fa2cbf32b8367e221db/html-intro-surf-paddle/assets/surf-and-paddle.png
+// https:/github.com/theironyard/js-assignments/tree/bbd9f77989384afac6753fa2cbf32b8367e221db/html-intro-surf-paddle/assets/ResponsiveDesignV1-Desktop.psd
 
 
 // inquirer.prompt([
