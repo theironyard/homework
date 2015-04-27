@@ -41,79 +41,84 @@ walker.on('file', function(root, stat, next) {
   next();
 });
 
-inquirer.prompt([
-  {
-    name: 'name',
-    message: 'name',
-    default: path.basename(process.cwd()),
-    validate: transformValidator(validate.validateName)
-  },
-  {
-    name: 'version',
-    message: 'version',
-    default: '0.0.1',
-    validate: transformValidator(validate.validateVersion)
-  },
-  {
-    name: 'title',
-    message: 'title',
-    default: function(answers){ return answers.name; },
-    validate: transformValidator(validate.validateTitle)
-  },
-  {
-    name: 'description',
-    message: 'description',
-    default: function(answers){ return answers.title; },
-    validate: transformValidator(validate.validateDescription)
-  },
-  {
-    name: 'readmeTemplate',
-    message: 'Choose a README flavor',
-    type: 'list',
-    choices: ['JavaScript', 'Ruby', 'Python', 'iOS', 'Web Design', 'Plain']
-  },
-  {
-    name: 'difficultyModes',
-    message: 'Which difficulty modes do you want?',
-    type: 'checkbox',
-    choices: ['Easy', 'Normal', 'Hard', 'Nightmare'],
-    default: ['Normal']
-  },
-  {
-    name: 'keywords',
-    message: 'keywords (comma separated)',
-    validate: function(input){
-      return transformValidator(validate.validateKeywords)(validate.toArray(input));
+walker.on('end', function() {
+  var prompts = [
+    {
+      name: 'name',
+      message: 'name',
+      default: path.basename(process.cwd()),
+      validate: transformValidator(validate.validateName)
     },
-    filter: function(input){
-      return validate.toArray(input);
+    {
+      name: 'version',
+      message: 'version',
+      default: '0.0.1',
+      validate: transformValidator(validate.validateVersion)
     },
-    default: function(answers){
-      return answers.readmeTemplate;
+    {
+      name: 'title',
+      message: 'title',
+      default: function(answers){ return answers.name; },
+      validate: transformValidator(validate.validateTitle)
+    },
+    {
+      name: 'description',
+      message: 'description',
+      default: function(answers){ return answers.title; },
+      validate: transformValidator(validate.validateDescription)
+    },
+    {
+      name: 'readmeTemplate',
+      message: 'Choose a README flavor',
+      type: 'list',
+      choices: ['JavaScript', 'Ruby', 'Python', 'iOS', 'Web Design', 'Plain']
+    },
+    {
+      name: 'difficultyModes',
+      message: 'Which difficulty modes do you want?',
+      type: 'checkbox',
+      choices: ['Easy', 'Normal', 'Hard', 'Nightmare'],
+      default: ['Normal']
+    },
+    {
+      name: 'keywords',
+      message: 'keywords (comma separated)',
+      validate: function(input){
+        return transformValidator(validate.validateKeywords)(validate.toArray(input));
+      },
+      filter: function(input){
+        return validate.toArray(input);
+      },
+      default: function(answers){
+        return answers.readmeTemplate;
+      }
     }
-  },
-  {
-    name: 'supplementalFiles',
-    message: 'What files do you want?',
-    type: 'checkbox',
-    choices: files,
-    default: files
-  },
-  {
+  ];
+  if(files.length) {
+    prompts.push({
+      name: 'supplementalFiles',
+      message: 'What files do you want?',
+      type: 'checkbox',
+      choices: files,
+      default: files
+    });
+  }
+  prompts.push({
     name: 'commit',
     type: 'confirm',
     message: function(answers){
       var data = JSON.stringify(normalize(answers), null, 4) + '\n';
       return util.format("About to write to %s\n%s\nIs this ok?", process.cwd(), data);
     }
-  }
-], function(answers) {
-  if(answers.commit){
-    delete answers.commit;
-    initHomework(answers);
-  } else {
-    console.log('Aborted.');
-  }
+  });
+  inquirer.prompt(prompts, function(answers) {
+    if(answers.commit){
+      delete answers.commit;
+      initHomework(answers);
+    } else {
+      console.log('Aborted.');
+    }
+  });
 });
 
 function transformValidator(validator){
